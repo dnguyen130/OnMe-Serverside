@@ -19,6 +19,5 @@
   if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
     require_once("controller/delete/user.php");
   }
-  ?>
 
 ?>

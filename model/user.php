@@ -23,47 +23,20 @@
   //POST FUNCTIONS
 
   function AddUser(
-    $firebase_id = 0,
-    $picture = NULL,
+    $firebase_id = "0",
     $first_name = "",
-    $last_name = "",
-    $age = NULL,
-    $truth1 = NULL,
-    $truth2 = NULL,
-    $lie = NULL
+    $last_name = ""
     ){
     global $db;
 
     $stmt = $db->prepare(
-      "INSERT INTO `user` (
-        `id`, 
-        `firebase_id`, 
-        `picture`, 
-        `first_name`, 
-        `last_name`, 
-        `age`, 
-        `truth1`,
-        `truth2`,
-        `lie`)
-      VALUES (
-        NULL, 
-        :firebase_id,
-        :picture,
-        :first_name,
-        :last_name.
-        :age,
-        :truth1,
-        :truth2,
-        :lie)", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+      "INSERT INTO `user` (`id`, `firebase_id`, `picture`, `first_name`, `last_name`, `age`, `truth1`, `truth2`, `lie`)
+      VALUES (NULL, :firebase_id, NULL, :first_name, :last_name, NULL, NULL, NULL, NULL)", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+
     $stmt->execute(array(
       ":firebase_id"=>$firebase_id,
-      ":picture"=>$picture,
       ":first_name"=>$first_name,
-      ":last_name"=>$last_name,
-      ":age"=>$age,
-      ":truth1"=>$truth1,
-      ":truth2"=>$truth2,
-      ":lie"=>$lie));
+      ":last_name"=>$last_name));
 
     return $db->lastInsertId();
   }
