@@ -40,16 +40,20 @@
         `age`, 
         `truth1`, 
         `truth2`, 
-        `lie`)
+        `lie`
+      )
       VALUES (NULL, :firebase_id, NULL, :first_name, :last_name, NULL, NULL, NULL, NULL)", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
     $stmt->execute(array(
       ":firebase_id"=>$firebase_id,
       ":first_name"=>$first_name,
-      ":last_name"=>$last_name));
+      ":last_name"=>$last_name
+    ));
 
     return $db->lastInsertId();
   }
+
+  //PATCH FUNCTIONS
 
   function UpdateUser(
     $id=NULL,

@@ -13,7 +13,7 @@
       $_PATCH['age'], 
       $_PATCH['truth1'],
       $_PATCH['truth2'],
-      $_PATCH['lie'],
+      $_PATCH['lie']
     );
     echo "updated!";
   }
