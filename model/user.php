@@ -30,15 +30,60 @@
     global $db;
 
     $stmt = $db->prepare(
-      "INSERT INTO `user` (`id`, `firebase_id`, `picture`, `first_name`, `last_name`, `age`, `truth1`, `truth2`, `lie`)
+      "INSERT INTO `user` 
+      (
+        `id`, 
+        `firebase_id`, 
+        `picture`, 
+        `first_name`, 
+        `last_name`, 
+        `age`, 
+        `truth1`, 
+        `truth2`, 
+        `lie`
+      )
       VALUES (NULL, :firebase_id, NULL, :first_name, :last_name, NULL, NULL, NULL, NULL)", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
     $stmt->execute(array(
       ":firebase_id"=>$firebase_id,
       ":first_name"=>$first_name,
-      ":last_name"=>$last_name));
+      ":last_name"=>$last_name
+    ));
 
     return $db->lastInsertId();
+  }
+
+  //PATCH FUNCTIONS
+
+  function UpdateUser(
+    $id=NULL,
+    $age=NULL, 
+    $truth1="",
+    $truth2="",
+    $lie=""
+    ){
+    global $db;
+
+    if($id == NULL){
+      return false;
+    }
+
+    $stmt = $db->prepare(
+      "UPDATE `user` 
+      SET 
+      `age` = :age,
+      `truth1` = :truth1,
+      `truth2` = :truth2,
+      `lie` = :lie
+      WHERE 
+      `user`.`id` = :id;", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $stmt->execute(array(
+      ":id"=>$id,
+      ":age"=>$age,
+      ":truth1"=>$truth1,
+      ":truth2"=>$truth2,
+      ":lie"=>$lie
+    ));
   }
 
 ?>
