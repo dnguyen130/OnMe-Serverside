@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 02, 2021 at 09:51 AM
+-- Generation Time: Dec 02, 2021 at 03:17 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.16
 
@@ -78,7 +78,7 @@ CREATE TABLE `item` (
   `restaurant_id` int(11) NOT NULL,
   `firebase_id` varchar(50) NOT NULL,
   `i_name` varchar(50) NOT NULL,
-  `picture` longblob,
+  `picture` varchar(100) DEFAULT NULL,
   `price` decimal(5,2) NOT NULL,
   `description` varchar(200) NOT NULL,
   `drink_tag` enum('Cocktail','Shooter','Mocktail') DEFAULT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id`, `restaurant_id`, `firebase_id`, `i_name`, `picture`, `price`, `description`, `drink_tag`, `food_tag`, `trending`, `food`, `drink`, `recent_rank`) VALUES
-(1, 1, '2aafaf3a', 'Mac', NULL, '9.99', 'Yummy hehe', NULL, 'Appetizer', 1, 1, 1, 1);
+(1, 1, '1', 'Fully Loaded Nachos', '../../assets/headerImg.png', '7.99', 'Olives, onions, tomatoes, ground beef, jalapeños with sour cream and fresh guac.', NULL, 'Appetizer', 1, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -106,7 +106,7 @@ CREATE TABLE `restaurant` (
   `id` int(11) NOT NULL,
   `firebase_id` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `picture` longblob,
+  `picture` varchar(100) DEFAULT NULL,
   `address` varchar(200) NOT NULL,
   `city` varchar(50) NOT NULL,
   `drink` tinyint(1) NOT NULL,
@@ -119,7 +119,12 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`id`, `firebase_id`, `name`, `picture`, `address`, `city`, `drink`, `food`, `frequent_rank`) VALUES
-(1, '12raf3a', 'EXAMPLE', NULL, '1111 Main Street', 'ABC', 1, 1, 1);
+(1, '0', 'SW01 Room 1205', '../../assets/headerImg.png', '3700 Willingdon Ave', 'Burnaby', 1, 1, 1),
+(2, '0', 'Habitat Pub', '../../assets/headerImg.png', '3700 Willingdon Ave', 'Burnaby', 1, 1, 2),
+(3, '0', 'Browns Socialhouse', '../../assets/headerImg.png', '1908 Rosser Ave', 'Burnaby', 1, 1, 3),
+(4, '0', 'The Keg Steakhouse + Bar', '../../assets/headerImg.png', '4510 Still Creek Ave', 'Burnaby', 1, 1, 4),
+(5, '0', 'JOEY', '../../assets/headerImg.png', '1899 Rosser Ave #109', 'Burnaby', 1, 1, 5),
+(6, '0', 'Cactus Club Cafe', '../../assets/headerImg.png', '4219 B Lougheed Hwy.', 'Burnaby', 1, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -213,7 +218,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
