@@ -1,7 +1,7 @@
 <?php
 
   require_once("config.php");
-  require_once("model/item.php");
+  require_once("../model/item.php");
 
   if($_SERVER['REQUEST_METHOD'] == 'GET'){
     require_once("../controller/get/item.php");
